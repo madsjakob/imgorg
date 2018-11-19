@@ -13,32 +13,24 @@ let displayImages = function displayImages(filepaths, bookmarks) {
     target.innerHTML = "";
     fs.readdir(dirPath, (err, dir) => {
         console.log(dir);
-        for(let i = 0; i < dir.length; i++) {
-            console.log("Hest");
-            let imgType = null;
-            let ext = path.extname(dir[i]);                
-            if (ext.toLocaleLowerCase() == '.png') {
+        if(dir.length > 0) {
+            let ext = path.extname(dir[0]).toLocaleLowerCase();                
+            if (ext == '.png') {
                 imgType = 'data:image/png;base64';
             }
-            else if (ext.toLocaleLowerCase() == '.jpg') {
+            else if (ext == '.jpg') {
                 imgType = 'data:image/jpg;base64';
             }
             if(imgType != null) {
-                console.log(path.join(dirPath, dir[i]));
-                let imgData = fs.readFileSync(path.join(dirPath, dir[i])).toString('base64');
-                // var imgTag = '<div class="div-thumbnail well"><img class="img-thumbnail rounded float-left img-responsive" src="' + imgType + ',' + imgData + '" alt="Hej"/></div>';
-
+                let filename = path.join(dirPath, dir[0]);
+                let imgData = fs.readFileSync(filename).toString('base64');
                 let imgTag = '<div class="card"><img class="card-img-top" src="' + imgType + ',' + imgData + '" alt="Card image cap">'
                 + ' <div class="card-body"><p class="card-text">' + dir[0] + '</p>'
+                + '<p class="card-text">' + dir.length + ' items</p>'
                 + '</div></div>';
                 target.insertAdjacentHTML('beforeend', imgTag);
             }
-            if(i > 19)
-        {
-            break;
         }
-        }
-        
     });
 }
 

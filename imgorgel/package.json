@@ -4,7 +4,7 @@
   "description": "Image Organizer",
   "main": "main.js",
   "scripts": {
-    "test": " "
+    "start": "electron ."
   },
   "author": "Mads Jakob Steffansen",
   "license": "ISC",

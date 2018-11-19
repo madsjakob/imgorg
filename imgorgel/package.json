@@ -1,0 +1,14 @@
+{
+  "name": "imgorgel",
+  "version": "1.0.0",
+  "description": "Image Organizer",
+  "main": "main.js",
+  "scripts": {
+    "test": " "
+  },
+  "author": "Mads Jakob Steffansen",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^3.0.9"
+  }
+}

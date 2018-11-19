@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'nonce-2726c7f26c' https://stackpath.bootstrapcdn.com https://code.jquery.com https://cdnjs.cloudflare.com">
+    <meta http-equiv="Content-Security-Policy" content="style-src 'self' https://stackpath.bootstrapcdn.com https://fonts.googleapis.com">
+    <title>Image organizer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="jumbotron">
+        <h1>Image organizer</h1>
+        <p>Et værktøj til at organisere billeder med</p>
+    </div>
+            
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend"><span class="input-group-text"><i class="material-icons text-primary">collections</i></span></div>
+                    <input id="mappe" class="form-control" type="text" aria-label="Hest" aria-describedby="basic-addon2" readonly />
+                    <div class="input-group-append">
+                        <button id="filebutton" class="btn btn-primary">Vælg mappe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        <div id="image_container" class="card-columns"></div>
+        </div>
+        <!-- h1>Info</h1-->
+        <div id="output"></div>
+    </div>
+</body>
+<script nonce="2726c7f26c">
+        require('./renderer.js');
+</script> 
+</html>

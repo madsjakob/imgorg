@@ -1,0 +1,20 @@
+.div-thumbnail {
+    width: 18rem;
+}
+
+.img-thumbnail {
+    max-width: 300px;
+    max-height: 200px;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-columns {
+    @include media-breakpoint-only(lg) {
+      column-count: 2;
+    }
+    @include media-breakpoint-only(xl) {
+      column-count: 5;
+    }
+  }

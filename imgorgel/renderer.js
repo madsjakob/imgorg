@@ -12,16 +12,19 @@ let displayImages = function displayImages(filepaths, bookmarks) {
     let target = document.getElementById('image_container');
     target.innerHTML = "";
     fs.readdir(dirPath, (err, dir) => {
-        for(let i = 0; i < dir.length; i ++) {
+        console.log(dir);
+        for(let i = 0; i < dir.length; i++) {
+            console.log("Hest");
             let imgType = null;
             let ext = path.extname(dir[i]);                
-            if (ext == '.png') {
+            if (ext.toLocaleLowerCase() == '.png') {
                 imgType = 'data:image/png;base64';
             }
-            else if (ext == '.jpg') {
+            else if (ext.toLocaleLowerCase() == '.jpg') {
                 imgType = 'data:image/jpg;base64';
             }
             if(imgType != null) {
+                console.log(path.join(dirPath, dir[i]));
                 let imgData = fs.readFileSync(path.join(dirPath, dir[i])).toString('base64');
                 // var imgTag = '<div class="div-thumbnail well"><img class="img-thumbnail rounded float-left img-responsive" src="' + imgType + ',' + imgData + '" alt="Hej"/></div>';
 
@@ -30,7 +33,12 @@ let displayImages = function displayImages(filepaths, bookmarks) {
                 + '</div></div>';
                 target.insertAdjacentHTML('beforeend', imgTag);
             }
+            if(i > 19)
+        {
+            break;
         }
+        }
+        
     });
 }
 

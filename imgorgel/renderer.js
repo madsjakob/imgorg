@@ -13,6 +13,21 @@ let selectPath = function selectPath(target, dirPath, callback) {
     callback(dirPath);
 }
 
+let getImageType = function getImageType(filename) {
+    let result = null;
+    let ext = path.extname(filename).toLocaleLowerCase();
+    if (ext == '.png') {
+        result = 'data:image/png;base64';
+    }
+    else if (ext == '.jpg') {
+        result = 'data:image/jpg;base64';
+    }
+    else if (ext == '.gif') {
+        result = 'data:image/gif;base64';
+    }
+    return result;
+}
+
 let readDir = function readDir(dirPath) {
     let img = document.getElementById('currentImg');
     img.imgIndex = -1;
@@ -21,7 +36,9 @@ let readDir = function readDir(dirPath) {
         let imgArr = [];
         if (dir.length > 0) {
             for (let index = 0; index < dir.length; index++) {
-                imgArr.push(path.join(dirPath, dir[index]));
+                if(getImageType(dir[index])) {
+                    imgArr.push(path.join(dirPath, dir[index]));
+                }
             }
             img.imgIndex = 0;
         }
@@ -38,17 +55,7 @@ let displayImage = function displayImage() {
         imgRow.style.visibility = "visible";
         btnRow.style.visibility = "visible";
         let filepath = img.imgArr[img.imgIndex];
-        let ext = path.extname(filepath).toLocaleLowerCase();
-        if (ext == '.png') {
-            imgType = 'data:image/png;base64';
-        }
-        else if (ext == '.jpg') {
-            imgType = 'data:image/jpg;base64';
-        }
-        else if (ext == '.gif') {
-            imgType = 'data:image/gif;base64';
-        }
-
+        imgType = getImageType(filepath);
         let imgData = fs.readFileSync(filepath).toString('base64');
         img.src = imgType + "," + imgData;
     } else {

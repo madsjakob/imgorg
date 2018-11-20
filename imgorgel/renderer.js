@@ -5,11 +5,6 @@ const fse = require("fs-extra");
 const config = require('electron-json-config');
 const dateFormat = require('dateformat');
 
-console.log(config.file());
-
-
-
-
 let selectPath = function selectPath(target, dirPath, callback) {
     
     config.set(target, dirPath);
@@ -23,17 +18,16 @@ let readDir = function readDir(dirPath) {
     img.imgIndex = -1;
     fs.readdir(dirPath, (err, dir) => {
         console.log(dir);
+        let imgArr = [];
         if (dir.length > 0) {
-            let imgArr = [];
             for (let index = 0; index < dir.length; index++) {
                 imgArr.push(path.join(dirPath, dir[index]));
             }
-            img.imgArr = imgArr;
             img.imgIndex = 0;
-            displayImage();
         }
+        img.imgArr = imgArr;
+        displayImage();
     });
-
 }
 
 let displayImage = function displayImage() {
@@ -108,34 +102,27 @@ let moveImage = function moveImage(source, target, callback) {
     fs.copyFile(source, target, callback);
 }
 
-
-
 let archiveImage = function archiveImage() {
     let filename = getFilename();
     if (filename) {
         let stats = fs.statSync(filename);
         let filetime = stats.mtime;
-
         let dateFolder = path.join(dateFormat(filetime, "yyyy"), dateFormat(filetime, "mm"), dateFormat(filetime, "dd"));
-
-
         let archive = document.getElementById("archive");
         let archivePath = archive.value;
         let targetPath = path.join(archivePath, dateFolder);
-
         let targetFilename = path.join(targetPath, path.basename(filename));
-        
         console.log("Arkiverer " + filename + " som " + targetFilename);
         moveImage(filename, targetFilename, err => {
             if (err) {
                 console.log(err);
             } else {
                 removeImage();
+                fs.unlinkSync(filename);
             }
         });
     }
 }
-
 
 let discardImage = function discardImage() {
     let filename = getFilename();
@@ -149,16 +136,16 @@ let discardImage = function discardImage() {
                 console.log(err);
             } else {
                 removeImage();
+                fs.unlinkSync(filename);
             }
         });
     }
-
 }
 
 let selectDirectory = function selectDirectory(target, callback) {
     remote.dialog.showOpenDialog(remote.getCurrentWindow(), {
         properties: ['openDirectory']
-    },
+        },
         (filepaths, bookmarks) => { selectPath(target, filepaths[0], callback); }
     );
 }
@@ -175,7 +162,6 @@ archiveBtn.addEventListener('click', _ => {
 
 let nextbutton = document.getElementById('btnnext');
 nextbutton.addEventListener('click', _ => {
-    console.log('click');
     nextImage();
 });
 
@@ -189,7 +175,6 @@ archivebutton.addEventListener('click', _ => {
 });
 
 window.addEventListener('load', _ => {
-    console.log("load");
     let sourcePath = config.get('source');
     if(sourcePath) {
         selectPath("source", sourcePath, readDir);
@@ -200,6 +185,4 @@ window.addEventListener('load', _ => {
     }
 });
 
-
 console.log(process);
-

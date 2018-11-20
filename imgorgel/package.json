@@ -9,6 +9,9 @@
   "author": "Mads Jakob Steffansen",
   "license": "ISC",
   "dependencies": {
-    "electron": "^3.0.9"
+    "dateformat": "^3.0.3",
+    "electron": "^3.0.10",
+    "electron-json-config": "^1.5.3",
+    "fs-extra": "^7.0.1"
   }
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +8,59 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'nonce-2726c7f26c' https://stackpath.bootstrapcdn.com https://code.jquery.com https://cdnjs.cloudflare.com">
     <meta http-equiv="Content-Security-Policy" content="style-src 'self' https://stackpath.bootstrapcdn.com https://fonts.googleapis.com">
     <title>Image organizer</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="main.css" />
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <div class="jumbotron">
-        <h1>Image organizer</h1>
-        <p>Et værktøj til at organisere billeder med</p>
-    </div>
-            
+        <div class="jumbotron">
+                <h1>Image organizer</h1>
+                <p>Et værktøj til at organisere billeder med</p>
+            </div>
     <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend"><span class="input-group-text"><i class="material-icons text-primary">collections</i></span></div>
+                    <input id="source" class="form-control" type="text" aria-label="Hest" aria-describedby="basic-addon2" readonly placeholder="Vælg kilde...."/>
+                    <div class="input-group-append">
+                        <button id="sourceBtn" class="btn btn-primary">Vælg mappe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend"><span class="input-group-text"><i class="material-icons text-primary">collections</i></span></div>
+                    <input id="archive" class="form-control" type="text" aria-label="Hest" aria-describedby="basic-addon2" readonly placeholder="Vælg arkiv...."/>
+                    <div class="input-group-append">
+                        <button id="archiveBtn" class="btn btn-primary">Vælg mappe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="btnRow" class="row">
+            <div class="col-md-12">
+                <button id="btnarchive" class="btn btn-primary">Arkiver</button>
+                <button id="btndiscard" class="btn btn-primary">Kasser</button>
+                <button id="btnnext" class="btn btn-primary">Spring over</button>
+            </div>
+        </div>
+        <div id="imgRow" class="row flex-grow-1">
+            <div class="col-md-12">
+                <img id="currentImg" class="mw-100 mh-100 img-responsive" src="img/testimg.png" alt="test" />
+            </div>
+        </div>
+    </div>
+
+    <!--div class="container">
         <div class="row">
             <div class="col">
                 <div class="input-group mb-3">
@@ -32,14 +72,17 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-        <div id="image_container" class="card-columns"></div>
+        <div class="row w-100 h-100">
+            <p>Hej</p>
         </div>
-        <!-- h1>Info</h1-->
-        <div id="output"></div>
-    </div>
+        <div class="row">
+            <div id="image_container" class="card-columns"></div>
+        </div>
+        
+    </div-->
 </body>
 <script nonce="2726c7f26c">
-        require('./renderer.js');
-</script> 
+    require('./renderer.js');
+</script>
+
 </html>
